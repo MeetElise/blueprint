@@ -5,32 +5,32 @@ orbs:
 
 aliases:
   - &docker-node-image
-    - image: cimg/node:16.14
+    - image: cimg/node:22.23.4@sha256:097391155ab978930031757a857cf57278b907da8a994f278bbd27443c5018bf
 
   - &docker-node-browsers-image
-    - image: cimg/node:16.14-browsers
+    - image: cimg/node:22.23.4-browsers@sha256:8a08b091c3c5c6fad0f77559986f16cc49aa592a2a91c03af4140b4e6294469f
       environment:
         CHROME_BIN: "/usr/bin/google-chrome"
 
   - &restore-node-modules-cache
     name: Restore node_modules cache
-    key: v5-yarn-deps-{{ checksum "yarn.lock" }}
+    key: v6-node22-yarn-deps-{{ checksum "yarn.lock" }}
 
   - &restore-yarn-cache
     name: Restore yarnpkg cache
-    key: v5-yarn-cache
+    key: v6-node22-yarn-cache
 
   - &save-node-modules-cache
     name: Save node_modules cache
     paths:
       - node_modules
-    key: v5-yarn-deps-{{ checksum "yarn.lock" }}
+    key: v6-node22-yarn-deps-{{ checksum "yarn.lock" }}
 
   - &save-yarn-cache
     name: Save yarnpkg cache
     paths:
       - ~/.cache/yarn
-    key: v5-yarn-cache
+    key: v6-node22-yarn-cache
 
 references:
   reports_path: &reports_path
